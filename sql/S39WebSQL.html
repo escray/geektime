@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>SQL必知必会</title>
+  <script type="text/javascript">
+    if (!window.openDatabase) {
+      alert('browser not support WebSQL');
+    }
+    var datatable;
+    // 初始化
+    function init() {
+      datatable = document.getElementById("datatable");
+    }
+    // 显示每个英雄的数据
+    function showData(row) {
+      var tr = document.createElement("tr");
+      var td1 = document.createElement("td");
+      var td2 = document.createElement("td");
+      var td3 = document.createElement("td");
+      var td4 = document.createElement("td");
+      var td5 = document.createElement("td");
+      td1.innerHTML = row.id;
+      td2.innerHTML = row.name;
+      td3.innerHTML = row.hp_max;
+      td4.innerHTML = row.mp_max;
+      td5.innerHTML = row.role_main;
+      tr.appendChild(td1);
+      tr.appendChild(td2);
+      tr.appendChild(td3);
+      tr.appendChild(td4);
+      tr.appendChild(td5);
+      if(datatable == null) {
+        alert("datatable is not found");
+      }
+
+      datatable.appendChild(tr);
+    }
+    // 设置数据库信息
+    var db = openDatabase('wucai', '1.0', 'heros', 1024*1024);
+    var msg;
+
+    // 插入数据
+    db.transaction(function(tx){
+      tx.executeSql('CREATE TABLE IF NOT EXISTS heros(id unique, name, hp_max, mp_max, role_main)');
+      tx.executeSql('INSERT INTO heros (id, name, hp_max, mp_max, role_main) VALUES (10000, "Xia HouChun", 7350, 1746, "tank")');
+      tx.executeSql('INSERT INTO heros (id, name, hp_max, mp_max, role_main) VALUES (10001, "Zhong Wuyan", 7000, 1760, "fighter")');
+      tx.executeSql('INSERT INTO heros (id, name, hp_max, mp_max, role_main) VALUES (10002, "Zhang Fei", 8341, 100, "tank")');
+      tx.executeSql('INSERT INTO heros (id, name, hp_max, mp_max, role_main) VALUES (10003, "Niu mo", 8476, 1926, "tank")');
+      tx.executeSql('INSERT INTO heros (id, name, hp_max, mp_max, role_main) VALUES (10004, "Lv Bu", 7344, 0, "fighter")');
+      msg = '<p>insert heros successed</p>';
+      document.querySelector('#status').innerHTML = msg;
+    });
+    // 查询数据
+    db.transaction(function(tx){
+      tx.executeSql('SELECT id, name, hp_max, mp_max, role_main from heros', [], function(tx, data){
+        var len = data.rows.length;
+        msg = "<p>found " + len + " records</p>";
+        document.querySelector('#status').innerHTML += msg;
+        init();
+        // 将查询的英雄数据放到 datatable中
+        for (var i = 0; i < len; i++) {
+          showData(data.rows.item(i));
+        }
+      });
+    });
+
+    function query() {
+      var name = document.getElementById('name').value;
+      var sql = 'Select * from heros where name like ?';
+      db.transaction(function(tx){
+        tx.executeSql(sql, ['%'+name+'%'], function(tx, data){
+          var len = data.rows.length;
+          msg = "<p>found " + len + " records</p>";
+          document.querySelector('#status').innerHTML = msg;
+          datatable.innerHTML = '';
+          for (var i = 0; i < len; i++) {
+            showData(data.rows.item(i));
+          }
+        });
+      });
+    }
+  </script>
+  </head>
+
+  <body>
+    <div class="" id="status" name="status">
+      WebSQL Test
+    </div>
+    <p>
+      Query
+    </p>
+    <input id="name" type="text" name="name" />
+    <input type="button" value="query" onclick="query()"  />
+    <table border="1" id="datatable">
+    </table>
+  </body>
+</html>
