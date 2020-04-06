@@ -25,3 +25,6 @@ hs_err_pid*
 
 node_modules/
 yarn.lock
+
+sql/.ipynb_checkpoints/
+sql/Titanic_Data-master/
