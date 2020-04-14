@@ -1,0 +1,10 @@
+food,ounces,animal
+bacon,4.0 ,pig
+pulled port,3.0 ,pig
+bacon,NaN,pig
+Pastrami,6.0 ,cow
+corned beef,7.5 ,cow
+Bacon,8.0 ,pig
+pastrami,-3.0 ,cow
+honey ham,5.0 ,pig
+nova lox,6.0 ,salmon
