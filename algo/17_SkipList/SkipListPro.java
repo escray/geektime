@@ -1,4 +1,4 @@
-package skiplist;
+
 
 import java.util.Random;
 /**
@@ -65,12 +65,12 @@ public class SkipListPro {
      */
     Node p = head;
     for (int i = level - 1; i >= 0; --i) {
-      while (p.forwards[i] != null && p.forwards[i].data < data) {
+      while (p.forwards[i] != null && p.forwards[i].data < value) {
         p = p.forwards[i];
       }
 
       // 这里update[i]表示当前层节点的前一节点，因为要找到前一节点，才好插入数据
-      updata[i] = p;
+      update[i] = p;
     }
 
     // 将每一层节点和后面节点关联
@@ -145,15 +145,15 @@ public class SkipListPro {
         // 找到前一节点
         p = p.forwards[i];
       }
-    }
-    // levelCount 会 > level，所以加上判断
-    if (level > i) {
-      if (p.forwards[i] == null) {
-        p.forwards[i] = newNode;
-      } else {
-        Node next = p.forwards[i];
-        p.forwards[i] = newNode;
-        newNode.forwards[i] = next;
+      // levelCount 会 > level，所以加上判断
+      if (level > i) {
+        if (p.forwards[i] == null) {
+          p.forwards[i] = newNode;
+        } else {
+          Node next = p.forwards[i];
+          p.forwards[i] = newNode;
+          newNode.forwards[i] = next;
+        }
       }
     }
   }
@@ -172,7 +172,7 @@ public class SkipListPro {
     if (p.forwards[0] != null && p.forwards[0].data == value) {
       for (int i = levelCount - 1; i >= 0; --i) {
         if (update[i].forwards[i] != null && update[i].forwards[i].data == value) {
-          update[i].forwards = update[i].forwards[i].forwards[i];
+          update[i].forwards[i] = update[i].forwards[i].forwards[i];
         }
       }
     }
@@ -186,6 +186,7 @@ public class SkipListPro {
         level++;
       }
     }
+    return level;
   }
 
   // 打印每个节点数据和最大层数
@@ -239,5 +240,30 @@ public class SkipListPro {
       builder.append(" }");
       return builder.toString();
     }
+  }
+
+  public static void main(String[] args) {
+    SkipListPro list = new SkipListPro();
+    list.insert(1, 3);
+    list.insert(2, 3);
+    list.insert(3, 2);
+    list.insert(4, 4);
+    list.insert(5, 10);
+    list.insert(6, 4);
+    list.insert(8, 5);
+    list.insert(7, 4);
+    list.printAllBeauty();
+    list.printAll();
+
+    SkipListPro pro = new SkipListPro();
+    pro.insertMax(1);
+    pro.insertMax(2);
+    pro.insertMax(6);
+    pro.insertMax(7);
+    pro.insertMax(8);
+    pro.insertMax(3);
+    pro.insertMax(4);
+    pro.insertMax(5);
+    pro.printAllBeauty();
   }
 }
