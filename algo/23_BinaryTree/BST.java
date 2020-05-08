@@ -111,7 +111,6 @@ public class BST<Key extends Comparable<Key>, Value> {
         }
     }
 
-
     // recursive insert() implementation for elementary BSTs
     private Node insertBST(Node h, Key key, Value val) {
         if (h == null) {
@@ -190,7 +189,6 @@ public class BST<Key extends Comparable<Key>, Value> {
         return h;
     }
 
-
     // find the minimum key
     public Key min() {
         Node x = root;
@@ -201,6 +199,17 @@ public class BST<Key extends Comparable<Key>, Value> {
             return null;
         } else {
             return x.key;
+        }
+    }
+
+    public Key min(Node h) {
+        while (h != null) {
+            h = h.left;
+        }
+        if (h == null) {
+            return null;
+        } else {
+            return h.key;
         }
     }
 
@@ -325,6 +334,46 @@ public class BST<Key extends Comparable<Key>, Value> {
     public void deleteMin() {
         root = deleteMin(root);
         root.color = BLACK;
+    }
+
+    private Node delete(Node h, Key key) {
+        int cmp = key.compareTo(h.key);
+        // left
+        if (cmp < 0) {
+            // push red right if necessary
+            if (!isRed(h.left) && !isRed(h.left.left)) {
+                h = moveRedLeft(h);
+            }
+            // move down (left)
+            h.left = delete(h.left, key);
+        } else {
+            // rotate to push red right
+            if (isRed(h.left)) {
+                // h = leanRight(h);
+            }
+            // equal (at bottom) delete node
+            if (cmp == 0 && (h.right == null)) {
+                return null;
+            }
+            // push red right if necessary
+            if (!isRed(h.right) && !isRed(h.right.left)) {
+                h = moveRedRight(h);
+            }
+            // equal (not at bottom)
+            if (cmp == 0) {
+                // replace current node with successor key, value
+                h.key = min(h.right);
+                h.val = get(h.right, h.key);
+                // delete successor
+                h.right = deleteMin(h.right);
+            } else {
+                // move down (right)
+                h.right = delete(h.right, key);
+            }
+        }
+        // fix right-leaning red links
+        // and eliminate 4-nodes on the way up
+        return fixUp(h);
     }
 }
 
