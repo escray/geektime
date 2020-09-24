@@ -47,7 +47,10 @@ class Button {
         listeners.add(listener);
     }
 
+    abstract void onPress();
+
     public void press() {
+        onPress();
         for (ButtonListener listener : listeners) {
             listener.buttonPressed();
         }
