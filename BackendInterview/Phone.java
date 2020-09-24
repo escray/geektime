@@ -5,6 +5,7 @@ public class Phone {
     private Dialer dialer;
     private Button[] digitButtons;
     private Button sendButton;
+    public final static int STAR = "42";
 
     public Phone() {
         dialer = new Dialer();
@@ -23,6 +24,12 @@ public class Phone {
             public void buttonPressed() {
                 dialer.dial();
             }
+        });
+        starButton = new Button();
+        startButton.addListener(new ButtonListener() {
+           public void buttonPressed() {
+               dialer.enterDigit(STAR);
+           }
         });
     }
 
@@ -47,10 +54,10 @@ class Button {
         listeners.add(listener);
     }
 
-    abstract void onPress();
+//    abstract void onPress();
 
     public void press() {
-        onPress();
+//        onPress();
         for (ButtonListener listener : listeners) {
             listener.buttonPressed();
         }
