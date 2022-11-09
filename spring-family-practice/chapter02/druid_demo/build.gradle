@@ -24,7 +24,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	runtimeOnly 'com.h2database:h2'
 	annotationProcessor 'org.projectlombok:lombok'
+	implementation 'com.alibaba:druid-spring-boot-starter:1.2.14'
 	implementation 'org.springframework.boot:spring-boot-starter-test'
+
 }
 
 tasks.named('test') {
