@@ -1,0 +1,5 @@
+CREATE TABLE FOO
+(
+    ID  INT,
+    BAR VARCHAR(64)
+);
