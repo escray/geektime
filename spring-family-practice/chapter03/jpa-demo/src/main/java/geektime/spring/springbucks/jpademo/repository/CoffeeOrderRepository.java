@@ -1,7 +1,11 @@
 package geektime.spring.springbucks.jpademo.repository;
 
 import geektime.spring.springbucks.jpademo.model.CoffeeOrder;
-import org.springframework.data.repository.CrudRepository;
 
-public interface CoffeeOrderRepository extends CrudRepository<CoffeeOrder, Long> {
+import java.util.List;
+
+public interface CoffeeOrderRepository extends BaseRepository<CoffeeOrder, Long> {
+    List<CoffeeOrder> findByCustomerOrderById(String customer);
+
+    List<CoffeeOrder> findByItems_Name(String name);
 }
