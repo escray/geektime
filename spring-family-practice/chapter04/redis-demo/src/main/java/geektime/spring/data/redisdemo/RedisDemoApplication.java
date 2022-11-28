@@ -12,6 +12,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -26,6 +27,7 @@ import java.util.Map;
 @EnableTransactionManagement
 @EnableJpaRepositories
 @SpringBootApplication
+@EnableCaching(proxyTargetClass = true)
 public class RedisDemoApplication implements ApplicationRunner {
 
 	@Autowired
@@ -90,6 +92,16 @@ public class RedisDemoApplication implements ApplicationRunner {
 			log.info("======> JedisPool error");
 		}
 
+		coffeeService.reloadCoffee();
+
+		log.info("Count: {}", coffeeService.findAllCoffee().size());
+		for (int i = 0; i < 10; i++) {
+			log.info("Reading from cache.");
+			coffeeService.findAllCoffee();
+		}
+		coffeeService.reloadCoffee();
+		log.info("Reading after refresh.");
+		coffeeService.findAllCoffee().forEach(c -> log.info("Coffee {}", c.getName()));
 //		JedisExample();
 	}
 
