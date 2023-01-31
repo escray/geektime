@@ -1,5 +1,7 @@
 package geektime.spring.data.redisdemo;
 
+import geektime.spring.data.redisdemo.converter.BytesToMoneyConverter;
+import geektime.spring.data.redisdemo.converter.MoneyToBytesConverter;
 import geektime.spring.data.redisdemo.model.Coffee;
 import geektime.spring.data.redisdemo.service.CoffeeService;
 import io.lettuce.core.ReadFrom;
@@ -14,8 +16,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.convert.RedisCustomConversions;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 @Slf4j
@@ -27,16 +31,23 @@ public class RedisDemoApplication implements ApplicationRunner {
 	@Autowired
 	private CoffeeService coffeeService;
 
+//	@Bean
+//	public RedisTemplate<String, Coffee> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+//		RedisTemplate<String, Coffee> template = new RedisTemplate<>();
+//		template.setConnectionFactory(redisConnectionFactory);
+//		return template;
+//	}
+//
 	@Bean
-	public RedisTemplate<String, Coffee> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-		RedisTemplate<String, Coffee> template = new RedisTemplate<>();
-		template.setConnectionFactory(redisConnectionFactory);
-		return template;
+	public LettuceClientConfigurationBuilderCustomizer customizer() {
+		return builder -> builder.readFrom(ReadFrom.MASTER_PREFERRED);
 	}
 
 	@Bean
-	public LettuceClientConfigurationBuilderCustomizer customerizer() {
-		return builder -> builder.readFrom(ReadFrom.MASTER_PREFERRED);
+	public RedisCustomConversions redisCustomConversions() {
+		return new RedisCustomConversions(
+				Arrays.asList(new MoneyToBytesConverter(), new BytesToMoneyConverter())
+		);
 	}
 
 	public static void main(String[] args) {

@@ -17,7 +17,7 @@ public class CoffeeOrder extends BaseEntity implements Serializable {
     private String customer;
     @ManyToMany
     @JoinTable(name = "T_ORDER_COFFEE")
-    @OrderBy("id")
+    @OrderBy("Id")
     private List<Coffee> items;
     @Enumerated
     @Column(nullable = false)
