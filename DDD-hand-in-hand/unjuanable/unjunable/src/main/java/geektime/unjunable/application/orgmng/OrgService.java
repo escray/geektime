@@ -6,7 +6,10 @@ import geektime.unjunable.adapter.driving.persistence.orgmng.OrgRepositoryJdbc;
 import geektime.unjunable.adapter.driving.persistence.orgmng.OrgTypeRepositoryJdbc;
 import geektime.unjunable.adapter.driving.persistence.tenantmng.TenantRepository;
 import geektime.unjunable.domain.orgmng.Org;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class OrgService {
 //    private final UserRepository userRepository;
     private final TenantRepository tenantRepository;
@@ -14,7 +17,7 @@ public class OrgService {
     private final OrgRepositoryJdbc orgRepository;
     private final EmpRepositoryJdbc empReposiroty;
 
-
+    @Autowired
     public OrgService(TenantRepository tenantRepository,
                       OrgTypeRepositoryJdbc orgTypeRepository,
                       OrgRepositoryJdbc orgRepository,
