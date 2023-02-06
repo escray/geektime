@@ -1,23 +1,24 @@
 package geektime.unjunable.application.orgmng;
 
 import geektime.unjunable.adapter.driven.restful.orgmng.OrgDto;
-import geektime.unjunable.adapter.driving.persistence.orgmng.EmpRepository;
-import geektime.unjunable.adapter.driving.persistence.orgmng.OrgRepository;
-import geektime.unjunable.adapter.driving.persistence.orgmng.OrgTypeRepository;
+import geektime.unjunable.adapter.driving.persistence.orgmng.EmpRepositoryJdbc;
+import geektime.unjunable.adapter.driving.persistence.orgmng.OrgRepositoryJdbc;
+import geektime.unjunable.adapter.driving.persistence.orgmng.OrgTypeRepositoryJdbc;
 import geektime.unjunable.adapter.driving.persistence.tenantmng.TenantRepository;
 import geektime.unjunable.domain.orgmng.Org;
 
 public class OrgService {
 //    private final UserRepository userRepository;
     private final TenantRepository tenantRepository;
-    private final OrgTypeRepository orgTypeRepository;
-    private final OrgRepository orgRepository;
-    private final EmpRepository empReposiroty;
+    private final OrgTypeRepositoryJdbc orgTypeRepository;
+    private final OrgRepositoryJdbc orgRepository;
+    private final EmpRepositoryJdbc empReposiroty;
+
 
     public OrgService(TenantRepository tenantRepository,
-                      OrgTypeRepository orgTypeRepository,
-                      OrgRepository orgRepository,
-                      EmpRepository empRepository) {
+                      OrgTypeRepositoryJdbc orgTypeRepository,
+                      OrgRepositoryJdbc orgRepository,
+                      EmpRepositoryJdbc empRepository) {
         this.tenantRepository = tenantRepository;
         this.orgTypeRepository = orgTypeRepository;
         this.orgRepository = orgRepository;

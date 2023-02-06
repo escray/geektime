@@ -1,4 +1,4 @@
 package geektime.unjunable.adapter.driving.persistence.orgmng;
 
-public class OrgTypeRepository {
+public class OrgTypeRepositoryJdbc {
 }
