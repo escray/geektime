@@ -1,22 +1,17 @@
-package geektime.unjunable.domain.orgmng;
+package geektime.unjunable.adapter.driven.restful.orgmng;
 
 import java.time.LocalDateTime;
 
-public class Org {
+public class OrgDto {
     private Long id;
     private Long tenantId;
     private Long superiorId;
     private String orgTypeCode;
-    private Long leaderId;
+    private Long leaderID;
     private String name;
-    private OrgStatus status;
-    private LocalDateTime createAt;
+    private String status;
+    private LocalDateTime createdAt;
     private Long createdBy;
     private LocalDateTime lastUpdatedAt;
     private Long lastUpdatedBy;
-
-    public Org() {
-        //组织的初始状态默认为有效
-        this.status = OrgStatus.EFFECTIVE;
-    }
 }
