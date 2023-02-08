@@ -4,12 +4,15 @@ package geektime.unjunable.adapter.driving.persistence.orgmng;
 import geektime.unjunable.domain.orgmng.Org;
 import geektime.unjunable.domain.orgmng.OrgRepository;
 import geektime.unjunable.domain.orgmng.OrgStatus;
+import geektime.unjunable.domain.orgmng.OrgTypeStatus;
+import geektime.unjunable.domain.tenantmng.Tenant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.OptionalDouble;
 
 @Repository
 public class OrgRepositoryJdbc implements OrgRepository {

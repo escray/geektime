@@ -1,4 +1,5 @@
 package geektime.unjunable.domain.orgmng;
 
-public class OrgTypeStatus {
+public enum OrgTypeStatus {
+    EFFECTIVE
 }

@@ -1,4 +1,4 @@
 package geektime.unjunable.adapter.driving.persistence.projectmng;
 
-public class PrjectRepository {
+public class ClientRepositoryJdbc {
 }

@@ -19,4 +19,8 @@ public class Org {
         //组织的初始状态默认为有效
         this.status = OrgStatus.EFFECTIVE;
     }
+
+    public OrgType getOrgType() {
+        return OrgType.ENTERPRISE;
+    }
 }
