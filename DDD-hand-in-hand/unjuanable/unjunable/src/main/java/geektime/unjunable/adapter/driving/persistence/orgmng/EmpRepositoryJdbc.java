@@ -1,6 +1,6 @@
 package geektime.unjunable.adapter.driving.persistence.orgmng;
 
-import geektime.unjunable.domain.orgmng.EmpStatus;
+import geektime.unjunable.domain.orgmng.entity.EmpStatus;
 import org.springframework.stereotype.Repository;
 
 @Repository

@@ -1,4 +1,7 @@
-package geektime.unjunable.domain.orgmng;
+package geektime.unjunable.domain.orgmng.repository;
+
+import geektime.unjunable.domain.orgmng.entity.Org;
+import geektime.unjunable.domain.orgmng.entity.OrgStatus;
 
 import java.util.Optional;
 

@@ -1,4 +1,4 @@
-package geektime.unjunable.domain.orgmng;
+package geektime.unjunable.domain.orgmng.entity;
 
 public enum EmpStatus {
     REGULAR, PROBATION

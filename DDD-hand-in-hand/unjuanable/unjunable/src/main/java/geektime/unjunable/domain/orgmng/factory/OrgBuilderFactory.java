@@ -1,6 +1,10 @@
-package geektime.unjunable.domain.orgmng;
+package geektime.unjunable.domain.orgmng.factory;
 
 import geektime.unjunable.domain.common.validator.CommonValidator;
+import geektime.unjunable.domain.orgmng.domainservice.OrgLeaderValidator;
+import geektime.unjunable.domain.orgmng.domainservice.OrgNameValidator;
+import geektime.unjunable.domain.orgmng.domainservice.OrgTypeValidator;
+import geektime.unjunable.domain.orgmng.domainservice.SuperiorValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

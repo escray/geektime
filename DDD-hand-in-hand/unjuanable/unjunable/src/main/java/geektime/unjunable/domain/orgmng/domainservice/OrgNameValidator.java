@@ -1,6 +1,7 @@
-package geektime.unjunable.domain.orgmng;
+package geektime.unjunable.domain.orgmng.domainservice;
 
 import geektime.unjunable.domain.common.exception.BusinessException;
+import geektime.unjunable.domain.orgmng.repository.OrgRepository;
 import org.springframework.stereotype.Component;
 
 @Component

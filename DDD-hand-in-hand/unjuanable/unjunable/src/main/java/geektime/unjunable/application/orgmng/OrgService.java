@@ -2,9 +2,9 @@ package geektime.unjunable.application.orgmng;
 
 import geektime.unjunable.adapter.driven.restful.orgmng.OrgDto;
 import geektime.unjunable.adapter.driving.persistence.orgmng.OrgRepositoryJdbc;
-import geektime.unjunable.domain.orgmng.Org;
-import geektime.unjunable.domain.orgmng.OrgBuilder;
-import geektime.unjunable.domain.orgmng.OrgBuilderFactory;
+import geektime.unjunable.domain.orgmng.entity.Org;
+import geektime.unjunable.domain.orgmng.factory.OrgBuilder;
+import geektime.unjunable.domain.orgmng.factory.OrgBuilderFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

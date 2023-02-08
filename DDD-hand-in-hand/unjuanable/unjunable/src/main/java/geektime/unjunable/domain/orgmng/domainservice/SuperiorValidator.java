@@ -1,8 +1,13 @@
-package geektime.unjunable.domain.orgmng;
+package geektime.unjunable.domain.orgmng.domainservice;
 
 import geektime.unjunable.adapter.driving.persistence.orgmng.OrgTypeRepositoryJdbc;
 import geektime.unjunable.domain.common.exception.BusinessException;
 import geektime.unjunable.domain.common.exception.DirtyDataException;
+import geektime.unjunable.domain.orgmng.entity.OrgTypeStatus;
+import geektime.unjunable.domain.orgmng.entity.Org;
+import geektime.unjunable.domain.orgmng.entity.OrgStatus;
+import geektime.unjunable.domain.orgmng.entity.OrgType;
+import geektime.unjunable.domain.orgmng.repository.OrgRepository;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,8 +1,7 @@
 package geektime.unjunable.adapter.driving.persistence.orgmng;
 
-import geektime.unjunable.domain.orgmng.OrgType;
-import geektime.unjunable.domain.orgmng.OrgTypeStatus;
-import geektime.unjunable.domain.tenantmng.Tenant;
+import geektime.unjunable.domain.orgmng.entity.OrgType;
+import geektime.unjunable.domain.orgmng.entity.OrgTypeStatus;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
