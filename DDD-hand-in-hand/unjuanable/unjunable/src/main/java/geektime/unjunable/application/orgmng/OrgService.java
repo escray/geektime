@@ -38,5 +38,4 @@ public class OrgService {
     private Org buildOrg(OrgDto request, Long userId) {
         return null;
     }
-
 }

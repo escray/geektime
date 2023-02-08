@@ -1,7 +1,7 @@
 package geektime.unjunable.domain.common.validator;
 
 import geektime.unjunable.adapter.driving.persistence.tenantmng.TenantRepositoryJdbc;
-import geektime.unjunable.common.framework.BusinessException;
+import geektime.unjunable.domain.common.exception.BusinessException;
 import geektime.unjunable.domain.tenantmng.TenantStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
