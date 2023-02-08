@@ -10,7 +10,7 @@ public class Org {
     private Long leaderId;
     private String name;
     private OrgStatus status;
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
     private Long createdBy;
     private LocalDateTime lastUpdatedAt;
     private Long lastUpdatedBy;
@@ -22,5 +22,33 @@ public class Org {
 
     public OrgType getOrgType() {
         return OrgType.ENTERPRISE;
+    }
+
+    public void setTenantId(Long tenantId) {
+        this.tenantId = tenantId;
+    }
+
+    public void setSuperiorId(Long superiorId) {
+        this.superiorId = superiorId;
+    }
+
+    public void setOrgTypeCode(String orgTypeCode) {
+        this.orgTypeCode = orgTypeCode;
+    }
+
+    public void setLeaderId(Long leaderId) {
+        this.leaderId = leaderId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCreatedAt(LocalDateTime createAt) {
+        this.createdAt = createAt;
+    }
+
+    public void setCreatedBy(Long createdBy) {
+        this.createdBy = createdBy;
     }
 }
