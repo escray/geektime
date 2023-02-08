@@ -3,6 +3,7 @@ package geektime.unjunable.application.orgmng;
 import geektime.unjunable.adapter.driven.restful.orgmng.OrgDto;
 import geektime.unjunable.adapter.driving.persistence.orgmng.OrgRepositoryJdbc;
 import geektime.unjunable.domain.orgmng.Org;
+import geektime.unjunable.domain.orgmng.OrgFactory;
 import geektime.unjunable.domain.orgmng.OrgValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,20 +12,19 @@ import org.springframework.stereotype.Service;
 public class OrgService {
 
     //代替了原来多个 Repository
-    private final OrgValidator validator;
+    //现在只需要注入工厂和仓库了
+    private final OrgFactory orgFactory;
     private final OrgRepositoryJdbc orgRepository;
 
     @Autowired
-    public OrgService(OrgValidator validator, OrgRepositoryJdbc orgRepository) {
-        this.validator = validator;
+    public OrgService(OrgFactory orgFactory, OrgRepositoryJdbc orgRepository) {
+        this.orgFactory = orgFactory;
         this.orgRepository = orgRepository;
     }
 
     // "添加组织"功能的入口
     public OrgDto addOrg(OrgDto request, Long userId) {
-        // 代替原来的 validate() 方法调用
-        validator.validate(request);
-        Org org = buildOrg(request, userId);
+        Org org = orgFactory.build(request, userId);
         org = orgRepository.save(org);
         return buildOrgDto(org);
     }
@@ -34,8 +34,5 @@ public class OrgService {
         return null;
     }
 
-    // 将DTO的值赋给领域对象...
-    private Org buildOrg(OrgDto request, Long userId) {
-        return null;
-    }
+    //原来DTO转领域对象的逻辑也移到了工厂
 }
