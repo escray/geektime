@@ -1,8 +1,10 @@
 package geektime.unjunable.domain.orgmng.entity;
 
+import geektime.unjunable.common.framework.domain.AuditableEntity;
+
 import java.time.LocalDateTime;
 
-public class Org {
+public class Org extends AuditableEntity {
     private Long id;
     private Long tenantId;
     private Long superiorId;
@@ -10,48 +12,18 @@ public class Org {
     private Long leaderId;
     private String name;
     private OrgStatus status;
-    private LocalDateTime createdAt;
-    private Long createdBy;
-    private LocalDateTime lastUpdatedAt;
-    private Long lastUpdatedBy;
 
-    public Org() {
+    public Org(Long tenantId, String orgTypeCode
+            , LocalDateTime createdAt, Long createdBy) {
+        super(createdAt, createdBy);
+        this.tenantId = tenantId;
+        this.orgTypeCode = orgTypeCode;
+
         //组织的初始状态默认为有效
         this.status = OrgStatus.EFFECTIVE;
     }
 
-    public OrgType getOrgType() {
-        return OrgType.ENTERPRISE;
-    }
-
-    public void setTenantId(Long tenantId) {
-        this.tenantId = tenantId;
-    }
-
-    public void setSuperiorId(Long superiorId) {
-        this.superiorId = superiorId;
-    }
-
-    public void setOrgTypeCode(String orgTypeCode) {
-        this.orgTypeCode = orgTypeCode;
-    }
-
-    public void setLeaderId(Long leaderId) {
-        this.leaderId = leaderId;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCreatedAt(LocalDateTime createAt) {
-        this.createdAt = createAt;
-    }
-
-    public void setCreatedBy(Long createdBy) {
-        this.createdBy = createdBy;
-    }
-
+    // 所有属性的 getter ...
     public Long getId() {
         return id;
     }
@@ -72,11 +44,32 @@ public class Org {
         return leaderId;
     }
 
-    public void setStatus(OrgStatus status) {
-        this.status = status;
+    public OrgType getOrgType() {
+        return OrgType.ENTERPRISE;
     }
 
     public OrgStatus getStatus() {
         return this.status;
+    }
+
+    public void setSuperiorId(Long superiorId) {
+        this.superiorId = superiorId;
+    }
+
+    public void setLeaderId(Long leaderId) {
+        this.leaderId = leaderId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // Org 自己管理自己的状态
+    public void cancel() {
+        this.status = OrgStatus.CANCELLED;
+    }
+
+    public boolean isEffective() {
+        return status.equals(OrgStatus.EFFECTIVE);
     }
 }

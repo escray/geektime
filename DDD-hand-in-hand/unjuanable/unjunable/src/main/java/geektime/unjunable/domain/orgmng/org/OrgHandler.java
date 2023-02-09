@@ -48,7 +48,8 @@ public class OrgHandler {
     public void cancel(Org org, Long userId) {
         cancelValidator.cancelledOrgShouldNotHasEmp(org.getTenantId(), org.getId());
         cancelValidator.OnlyEffectiveOrgCanBeCancelled(org);
-        org.setStatus(OrgStatus.CANCELLED);
+        // 只需告诉 Org 要进行撤销，但不必了解 Org 内部细节
+        org.cancel();
         updateAuditInfo(org, userId);
     }
 

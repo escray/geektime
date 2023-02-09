@@ -71,14 +71,12 @@ public class OrgBuilder {
     public Org build() {
         validate();
 
-        Org org = new Org();
-        org.setOrgTypeCode(this.orgTypeCode);
+        Org org = new Org(tenantId, orgTypeCode,
+                LocalDateTime.now(), createdBy);
+
         org.setLeaderId(this.leaderId);
         org.setName(this.name);
         org.setSuperiorId(this.superiorId);
-        org.setTenantId(this.tenantId);
-        org.setCreatedBy(this.createdBy);
-        org.setCreatedAt(LocalDateTime.now());
 
         return org;
     }
