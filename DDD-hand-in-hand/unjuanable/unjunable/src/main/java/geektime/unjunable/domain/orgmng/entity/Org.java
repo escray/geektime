@@ -51,4 +51,32 @@ public class Org {
     public void setCreatedBy(Long createdBy) {
         this.createdBy = createdBy;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Long getTenantId() {
+        return tenantId;
+    }
+
+    public Long getSuperiorId() {
+        return superiorId;
+    }
+
+    public Long getLeaderId() {
+        return leaderId;
+    }
+
+    public void setStatus(OrgStatus status) {
+        this.status = status;
+    }
+
+    public OrgStatus getStatus() {
+        return this.status;
+    }
 }

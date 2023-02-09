@@ -3,14 +3,15 @@ package geektime.unjunable.domain.orgmng.domainservice;
 import geektime.unjunable.adapter.driving.persistence.orgmng.EmpRepositoryJdbc;
 import geektime.unjunable.domain.common.exception.BusinessException;
 import geektime.unjunable.domain.orgmng.entity.EmpStatus;
+import geektime.unjunable.domain.orgmng.repository.EmpRepository;
 import org.springframework.stereotype.Component;
 
 @Component
 public class OrgLeaderValidator {
 
-    private EmpRepositoryJdbc empRepository;
+    private EmpRepository empRepository;
 
-    public OrgLeaderValidator(EmpRepositoryJdbc empRepository) {
+    public OrgLeaderValidator(EmpRepository empRepository) {
         this.empRepository = empRepository;
     }
 

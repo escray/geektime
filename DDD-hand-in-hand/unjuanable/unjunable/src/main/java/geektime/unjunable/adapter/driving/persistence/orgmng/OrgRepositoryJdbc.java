@@ -40,4 +40,12 @@ public class OrgRepositoryJdbc implements OrgRepository {
     public Org save(Org org) {
         return null;
     }
+
+    public Optional<Org> findById(Long tenantId, Long id) {
+        return null;
+    }
+
+    public void update(Org org) {
+
+    }
 }
