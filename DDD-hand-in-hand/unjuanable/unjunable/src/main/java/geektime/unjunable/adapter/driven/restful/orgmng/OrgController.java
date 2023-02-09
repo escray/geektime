@@ -1,6 +1,7 @@
 package geektime.unjunable.adapter.driven.restful.orgmng;
 
-import geektime.unjunable.application.orgmng.OrgService;
+import geektime.unjunable.application.orgmng.orgservice.OrgResponse;
+import geektime.unjunable.application.orgmng.orgservice.OrgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +17,7 @@ public class OrgController {
     }
 
     @PostMapping("/api/organizations")
-    public OrgDto addOrg(@RequestBody OrgDto request) {
+    public OrgResponse addOrg(@RequestBody OrgResponse request) {
         //从请求里解析出 userId ...
         Long userId = 1L;
         return orgService.addOrg(request, userId);

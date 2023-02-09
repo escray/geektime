@@ -1,7 +1,7 @@
-package geektime.unjunable.application.orgmng;
+package geektime.unjunable.application.orgmng.orgservice;
 
-import geektime.unjunable.adapter.driven.restful.orgmng.OrgDto;
 import geektime.unjunable.adapter.driving.persistence.orgmng.OrgRepositoryJdbc;
+import geektime.unjunable.domain.orgmng.org.OrgHandler;
 import geektime.unjunable.domain.common.exception.BusinessException;
 import geektime.unjunable.domain.orgmng.entity.Org;
 import geektime.unjunable.domain.orgmng.factory.OrgBuilder;
@@ -32,7 +32,7 @@ public class OrgService {
 
     // "添加组织"功能的入口
     @Transactional
-    public OrgDto addOrg(OrgDto request, Long userId) {
+    public OrgResponse addOrg(OrgResponse request, Long userId) {
         OrgBuilder builder = orgBuilderFactory.create();
         Org org = builder.tenantId(request.getTenantId())
                 .orgTypeCode(request.getOrgTypeCode())
@@ -48,7 +48,7 @@ public class OrgService {
 
     //修改组织基本信息
     @Transactional
-    public OrgDto updateOrgBasic(Long id, OrgDto request, Long userId) {
+    public OrgResponse updateOrgBasic(Long id, OrgResponse request, Long userId) {
         Org org = orgRepository.findById(request.getTenantId(), id)
                 .orElseThrow(() -> {
                         throw new BusinessException("要修改的组织(id ="
@@ -77,7 +77,7 @@ public class OrgService {
     }
 
     // 将领域对象的值赋给DTO...
-    private OrgDto buildOrgDto(Org org) {
+    private OrgResponse buildOrgDto(Org org) {
         return null;
     }
 

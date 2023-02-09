@@ -1,4 +1,4 @@
-package geektime.unjunable.application.orgmng;
+package geektime.unjunable.domain.orgmng.org;
 
 import geektime.unjunable.domain.common.validator.CommonValidator;
 import geektime.unjunable.domain.orgmng.domainservice.CancelOrgValidator;
